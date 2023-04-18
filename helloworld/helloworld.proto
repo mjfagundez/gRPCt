@@ -27,6 +27,18 @@ service Greeter {
   rpc SayHello (HelloRequest) returns (HelloReply) {}
   // Sends another greeting
   rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+  // Sends a ping
+  rpc PingPong (PingRequest) returns (PongReply) {}
+}
+
+// The request message for the PingPong method.
+message PingRequest {
+  string ping = 1;
+}
+
+// The response message for the PingPong method.
+message PongReply {
+  string pong = 1;
 }
 
 // The request message containing the user's name.

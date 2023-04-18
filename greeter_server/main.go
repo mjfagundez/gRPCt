@@ -27,7 +27,8 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
-	pb "google.golang.org/grpc/examples/helloworld/helloworld"
+
+	pb "github.com/mjfagundez/helloworldgrpc/helloworld"
 )
 
 var (
@@ -47,6 +48,12 @@ func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloRe
 func (s *server) SayHelloAgain(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	return &pb.HelloReply{Message: "Hello again " + in.GetName()}, nil
 }
+func (s *server) PingPong(ctx context.Context, in *pb.PingRequest) (*pb.PongReply, error) {
+
+	return &pb.PongReply{Pong: "pong"}, nil
+
+}
+
 func main() {
 	flag.Parse()
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))
@@ -59,4 +66,5 @@ func main() {
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
+
 }
