@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  greeter_server:
+    build: ./server
+    ports:
+      - "3000:3000"
+  greeter_client:
+    build: ./client
+    environment:
+      SERVER_ADDRESS: localhost:3000
+    depends_on:
+      - greeter_server
