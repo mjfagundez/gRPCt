@@ -2,12 +2,20 @@ version: '3'
 
 services:
   greeter_server:
-    build: ./server
+    build:
+      context: .
+      dockerfile: Dockerfile.server
     ports:
       - "3000:3000"
+    networks:
+      - helloworld
   greeter_client:
-    build: ./client
-    environment:
-      SERVER_ADDRESS: localhost:3000
+    build:
+      context: .
+      dockerfile: Dockerfile.client
     depends_on:
       - greeter_server
+    networks:
+      - helloworld
+networks:
+  helloworld:
