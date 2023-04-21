@@ -2,9 +2,7 @@ FROM golang:1.20-alpine
 
 WORKDIR /app
 
-COPY . ./app/greeter_server
-
-RUN ls
+COPY . .
 
 RUN go build -o server ./greeter_server
 
